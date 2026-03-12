@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tic-calendar-35a92.web.app/sitemap.xml
