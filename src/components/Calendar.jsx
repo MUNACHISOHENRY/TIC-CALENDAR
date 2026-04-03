@@ -45,7 +45,7 @@ export default function Calendar({
             <div className="cal-grid-wrapper">
                 <div className="cal-grid-inner">
                     <div style={{
-                        display: "grid", gridTemplateColumns: "repeat(7,1fr)",
+                        display: "grid", gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
                         borderBottom: `1px solid ${T.rule}`, marginBottom: 2
                     }}>
                         {DAYS_FULL.map((d, i) => (
@@ -58,7 +58,7 @@ export default function Calendar({
                     </div>
 
                     {/* Grid */}
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(7, minmax(0, 1fr))" }}>
                         {Array.from({ length: cells }).map((_, i) => {
                             const day = i - fd + 1;
                             const valid = day >= 1 && day <= dim;
