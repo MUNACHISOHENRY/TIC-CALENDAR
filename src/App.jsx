@@ -184,24 +184,28 @@ export default function TICCalendar() {
           .nav-wrap { flex-direction: column !important; align-items: flex-start !important; gap: 16px; padding: 16px 0 !important; }
           .nav-actions { width: 100%; justify-content: space-between !important; flex-wrap: wrap; gap: 12px; }
           .month-title { font-size: 32px !important; }
-          .search-filters { flex-wrap: nowrap !important; overflow-x: auto; padding-bottom: 8px; width: 100%; max-width: 100vw; -webkit-overflow-scrolling: touch; }
-          .search-filters button { flex-shrink: 0; }
-          .cal-grid-wrapper { overflow-x: visible; padding-bottom: 0; width: 100%; }
-          .cal-grid-inner { min-width: unset; width: 100%; }
-          .sel-day-header { flex-wrap: wrap; gap: 12px; }
           
-          /* Mobile Calendar Grid Adjustments */
-          .day-cell { min-height: 76px !important; padding: 4px !important; }
-          .day-num { width: 22px !important; height: 22px !important; font-size: 11px !important; margin: 0 auto; }
-          .day-num-wrapper { justify-content: center !important; margin-bottom: 2px !important; }
+          /* Smooth Hidden Scrollbar Filter */
+          .search-filters { flex-wrap: nowrap !important; overflow-x: auto; padding-bottom: 8px; width: 100%; max-width: 100vw; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+          .search-filters::-webkit-scrollbar { display: none; }
+          .search-filters button { flex-shrink: 0; }
+          
+          /* Horizontal Swipable Calendar */
+          .cal-grid-wrapper { overflow-x: auto; padding-bottom: 12px; width: calc(100% + 32px); margin-left: -16px; padding-left: 16px; padding-right: 16px; box-sizing: border-box; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; }
+          .cal-grid-wrapper::-webkit-scrollbar { display: none; }
+          .cal-grid-inner { min-width: 760px; width: 100%; padding-right: 16px; }
+          .day-cell { scroll-snap-align: center; }
+          
+          /* Improved Day Grid Spacing */
+          .sel-day-header { flex-wrap: wrap; gap: 12px; }
+          .day-cell { min-height: 86px !important; padding: 6px !important; }
           .add-btn { display: none !important; }
           
-          /* Keep events as small textual pills on mobile instead of dots */
-          .ev-badge-container { flex-direction: column !important; gap: 2px !important; margin-top: 2px; align-items: stretch !important; }
-          .ev-badge { width: 100% !important; height: auto !important; padding: 2px 0 !important; border-radius: 3px !important; line-height: 1 !important; text-align: center; }
-          .ev-badge-text { display: block !important; font-size: 8px !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1 !important; }
-          .ev-more { display: block !important; font-size: 8px !important; text-align: center; padding-left: 0 !important; margin-top: 1px; }
-          .day-label { font-size: 9px !important; padding-bottom: 6px !important; letter-spacing: 0 !important; }
+          /* Better Event Pills */
+          .ev-badge-container { flex-direction: column !important; gap: 4px !important; margin-top: 4px; align-items: stretch !important; }
+          .ev-badge { width: 100% !important; height: auto !important; padding: 4px 6px !important; border-radius: 4px !important; line-height: 1.2 !important; text-align: left; }
+          .ev-badge-text { display: block !important; font-size: 11px !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2 !important; }
+          .ev-more { display: block !important; font-size: 11px !important; text-align: left; padding-left: 4px !important; margin-top: 2px; }
         }
       `}</style>
 
@@ -243,7 +247,7 @@ export default function TICCalendar() {
       {isAdmin && (
         <button onClick={() => setModalOpen(true)}
           style={{
-            position: "fixed", bottom: 24, right: 24, width: 56, height: 56,
+            position: "fixed", bottom: 32, right: 24, width: 56, height: 56,
             borderRadius: "50%", background: T.accent, color: "#fff",
             fontSize: 28, display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center",
             boxShadow: `0 8px 24px ${T.accentMd}60`, border: "none", zIndex: 99,
